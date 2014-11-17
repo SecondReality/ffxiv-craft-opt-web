@@ -4,7 +4,7 @@ This project contains the source for the [FFXIV Crafting Optimizer Website](http
 It uses [AngularJS](http://angularjs.org/), [AngularUI Bootstrap](http://angular-ui.github.io/bootstrap/), 
 and [Bootstrap](http://getbootstrap.com/).
 
-I'm experimenting with alpha-beta/minimax algorithms to create optimal crafting instructions.
+I'm experimenting with the expectimax algorithm to create optimal crafting instructions.
 
 **This app is currently non-functional.**
 
