@@ -1,5 +1,6 @@
 importScripts('../lib/string/String.js');
 importScripts('ffxivcraftmodel.js');
+importScripts('expectimaxSolver.js');
 importScripts('../lib/yagal/creator.js');
 importScripts('../lib/yagal/tools.js');
 importScripts('../lib/yagal/fitness.js');
@@ -83,9 +84,15 @@ self.onmessage = function(e) {
   logOutput.write("Genetic Algorithm Result\n");
   logOutput.write("========================\n");
 
-  yagal_algorithms.eaSimple(pop, toolbox, 0.5, 0.2, settings.solver.generations, hof, feedback);
+console.log("hello1");
+  // yagal_algorithms.eaSimple(pop, toolbox, 0.5, 0.2, settings.solver.generations, hof, feedback);
+  var best = expectimaxSolver(synth, true, true, logOutput) 
+console.log("hello2 " + best);
 
-  var best = hof.entries[0];
+
+  //var best = [randomChoice(crafterActions)];//hof.entries[0];
+
+
   var finalState = simSynth(best, synth, true, false, logOutput);
 
   var bestSequence = [];
@@ -97,6 +104,8 @@ self.onmessage = function(e) {
   logOutput.write("==================\n");
 
   MonteCarloSim(best, synth, settings.maxMontecarloRuns, settings.seed, false, false, logOutput);
+
+
 
   var result = {
     success: {
@@ -113,8 +122,26 @@ self.onmessage = function(e) {
       bestSequence: bestSequence
     }
   };
-
+  
+/*
+    var result = {
+    success: {
+      log: logOutput.log,
+      finalState: {
+        quality: finalState.qualityState,
+        durabilityOk: finalState.durabilityOk,
+        durability: finalState.durabilityState,
+        cpOk: finalState.cpOk,
+        cp: finalState.cpState,
+        progressOk: finalState.progressOk,
+        progress: finalState.progressState
+      },
+      bestSequence: [randomChoice(crafterActions)]
+    }
+  };
+*/
   self.postMessage(result);
+
 };
 
 function randomInt(max) {

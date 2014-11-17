@@ -134,6 +134,28 @@ function EffectTracker() {
     this.countDowns = {};
 }
 
+/*
+var worldState = {
+    // State Tracking
+    var durabilityState = synth.recipe.durability;
+    var cpState = synth.crafter.craftPoints;
+    var progressState = 0;
+    var qualityState = synth.recipe.startQuality;
+    var stepCount = 0;
+    var wastedActions = 0;
+    var effects = new EffectTracker();
+    var maxTricksUses = 0;
+    var trickUses = 0;
+    var reliability = 1;
+    var crossClassActionList = {};
+    var crossClassActionCounter = 0;
+    var useConditions = synth.useConditions;
+
+    var condition = 'Normal';
+};
+*/
+//function CreateWorld(synth)
+
 function State(step, action, durabilityState, cpState, qualityState, progressState, wastedActions, progressOk, cpOk, durabilityOk, trickOk, reliabilityOk, crossClassActionList) {
     this.step = step;
     this.action = action;
@@ -447,6 +469,8 @@ function simSynth(individual, synth, verbose, debug, logOutput) {
 
     return finalState;
 }
+
+
 
 function MonteCarloSynth(individual, synth, verbose, debug, logOutput) {
     verbose = verbose !== undefined ? verbose : true;
@@ -788,6 +812,22 @@ function MonteCarloSynth(individual, synth, verbose, debug, logOutput) {
     }
 
     return finalState;
+}
+
+// nRuns is unused.
+function ExpectimaxSim(individual, synth, nRuns, seed, verbose, debug, logOutput)
+{
+     seed = seed !== undefined ? seed : 0;
+    verbose = verbose !== undefined ? verbose : false;
+    debug = debug !== undefined ? debug : false;
+    logOutput = logOutput !== undefined ? logOutput : null;
+
+    var logger = new Logger(logOutput);
+
+    var finalStateTracker = [];
+
+    var runSynth = MonteCarloSynth(individual, synth, false, debug, logOutput);
+    logger.log('Expectimax Complete');  
 }
 
 function MonteCarloSim(individual, synth, nRuns, seed, verbose, debug, logOutput) {
