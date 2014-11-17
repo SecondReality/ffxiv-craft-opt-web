@@ -6,7 +6,7 @@ and [Bootstrap](http://getbootstrap.com/).
 
 I'm experimenting with the expectimax algorithm to create optimal crafting instructions.
 
-**This app is currently non-functional.**
+**This app is currently non-functional. The biggest problem is the amount of time it takes to run the algorithm - I'm considering moving it to C++.**
 
 ### Running the app during development
 
